@@ -1,9 +1,13 @@
 import os
+import re
 import random
 import zipfile
 
 
-def get_proxy_plugin(PROXY_HOST, PROXY_PORT, PROXY_USER, PROXY_PASS):
+def get_proxy_plugin(proxy_line):
+    """PROXY_HOST:PROXY_PORT@PROXY_USER:PROXY_PASS"""
+    PROXY_HOST, PROXY_PORT, PROXY_USER, PROXY_PASS = re.split('@|:', proxy_line)
+    
     manifest_json = """
     {
         "version": "1.0.0",
